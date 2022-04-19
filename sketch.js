@@ -15,6 +15,7 @@ function setup() {
 	 createCanvas(windowWidth, windowHeight);
 	 background(0);
 	 controls = new ControlsAndInput();
+	 angleMode(DEGREES)
 
 	 //instantiate the fft object
 	 fourier = new p5.FFT();
@@ -23,7 +24,9 @@ function setup() {
 	 vis = new Visualisations();
 	 vis.add(new Spectrum());
 	 vis.add(new WavePattern());
+	 vis.add(new CircularWavePattern());
 	 vis.add(new Needles());
+	 
 }
 
 function draw() {
