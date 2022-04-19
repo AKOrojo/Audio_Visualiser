@@ -25,6 +25,7 @@ function setup() {
 	 vis.add(new Spectrum());
 	 vis.add(new WavePattern());
 	 vis.add(new CircularWavePattern());
+	 vis.add(new TriangleSpectrum());
 	 vis.add(new Needles());
 	 
 }
