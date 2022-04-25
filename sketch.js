@@ -54,3 +54,4 @@ function windowResized() {
 		vis.selectedVisual.onResize();
 	}
 }
+
