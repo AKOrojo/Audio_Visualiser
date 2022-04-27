@@ -7,6 +7,8 @@ var sound = null;
 //variable for p5 fast fourier transform
 var fourier;
 
+
+
 function preload() {
 	sound = loadSound('assets/stomper_reggae_bit.mp3');
 }
@@ -25,6 +27,8 @@ function setup() {
 	 vis.add(new WavePattern());
 	 vis.add(new Needles());
 	 vis.add(new TriangleSpectrum())
+	 vis.add(new CircularWavePattern());
+	 
 }
 
 function draw() {

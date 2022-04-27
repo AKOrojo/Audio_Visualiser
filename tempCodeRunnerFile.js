@@ -1,0 +1,1 @@
+triangle(0, 0, width, height, 0, height);
