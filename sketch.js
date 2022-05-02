@@ -7,7 +7,8 @@ var sound = null;
 //variable for p5 fast fourier transform
 var fourier;
 
-
+var amp
+var volHistory = []
 
 function preload() {
 	sound = loadSound('assets/stomper_reggae_bit.mp3');
@@ -17,9 +18,14 @@ function setup() {
 	 createCanvas(windowWidth, windowHeight);
 	 background(0);
 	 controls = new ControlsAndInput();
-
+	
+	 angleMode(DEGREES);
 	 //instantiate the fft object
 	 fourier = new p5.FFT();
+
+
+	 amp = new p5.Amplitude()
+	 
 
 	 //create a new visualisation container and add visualisations
 	 vis = new Visualisations();
@@ -28,6 +34,11 @@ function setup() {
 	 vis.add(new Needles());
 	 vis.add(new TriangleSpectrum())
 	 vis.add(new CircularWavePattern());
+	 vis.add(new OpticalWavePattern());
+	 vis.add(new Soundbar())
+	 vis.add(new Lines());
+	
+	 
 	 
 }
 
@@ -37,6 +48,12 @@ function draw() {
 	vis.selectedVisual.draw();
 	//draw the controls on top.
 	controls.draw();
+
+	//populate volHistory
+	if(sound.isPlaying()){
+        var vol = amp.getLevel()
+        volHistory.push(vol)
+	 }
 }
 
 function mouseClicked() {

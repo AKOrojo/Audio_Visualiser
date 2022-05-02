@@ -8,23 +8,22 @@ function CircularWavePattern() {
 		push();
 		noFill();
 		stroke(255, 0, 0);
-		strokeWeight(2);
-
+		strokeWeight(3);
 		
+		translate(width / 2, height / 2);
 		beginShape();
-		//calculate the waveform from the fft.
-		var wave = fourier.waveform();
-		
-		for (var i = 0; i < wave.length; i++) {
-			//for each element of the waveform map it to screen
-			//coordinates and make a new vertex at the point.
-			var x = map(i, 0, wave.length, 0, width) * cos(i);
-			var y = map(wave[i], -1, 1, 0, height) * sin(i);
-
+		for (var i = 0; i < 360; i++) {
+			var r = map(volHistory[i], 0, 1, 300, 800);
+			var x = r * cos(i);
+			var y = r * sin(i);
 			vertex(x, y);
 		}
 
 		endShape();
+
+		if (volHistory.length > 360) {
+			volHistory.splice(0, 1);
+		}
 		pop();
 	};
 }
