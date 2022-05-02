@@ -9,6 +9,7 @@ var fourier;
 
 var amp
 var volHistory = []
+var particles = []
 
 function preload() {
 	sound = loadSound('assets/stomper_reggae_bit.mp3');
@@ -37,9 +38,8 @@ function setup() {
 	 vis.add(new OpticalWavePattern());
 	 vis.add(new Soundbar())
 	 vis.add(new Lines());
-	
-	 
-	 
+	 vis.add(new CircularWavePatternAndParticles())
+
 }
 
 function draw() {
@@ -70,5 +70,16 @@ function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
 	if (vis.selectedVisual.hasOwnProperty('onResize')) {
 		vis.selectedVisual.onResize();
+	}
+}
+
+class Particle {
+	constructor() {
+		this.pos = p5.Vector.random2D().mult(250)
+	}
+	show() {
+		noStroke()
+		fill(255)
+		elipse(this.pos.x, this.pos.y), 4
 	}
 }
