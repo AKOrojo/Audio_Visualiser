@@ -13,7 +13,7 @@ function CircularWavePattern() {
 		translate(width / 2, height / 2);
 		beginShape();
 		for (var i = 0; i < 360; i++) {
-			var r = map(volHistory[i], 0, 1, 300, 800);
+			var r = map(volHistory[i], 0, 1, 100, 800);
 			var x = r * cos(i);
 			var y = r * sin(i);
 			vertex(x, y);
