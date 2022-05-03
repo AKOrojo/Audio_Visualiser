@@ -8,9 +8,17 @@ var sound = null;
 var fourier;
 
 var amp
+
+var ampEnergy
+
 var volHistory = []
 
 var particles = []
+
+var smoothing = 0.8; // play with this, between 0 and .99
+var binCount = 1024; // size of resulting FFT array. Must be a power of 2 between 16 an 1024
+var particless =  new Array(binCount);
+
 
 function preload() {
 	sound = loadSound('assets/stomper_reggae_bit.mp3');
@@ -20,15 +28,18 @@ function setup() {
 	 createCanvas(windowWidth, windowHeight);
 	 background(0);
 	 controls = new ControlsAndInput();
-	
-	 angleMode(DEGREES);
+	 
+	angleMode(DEGREES)
 	 //instantiate the fft object
 	 fourier = new p5.FFT();
 
 
 	 amp = new p5.Amplitude()
-	 
 
+	 fourier.analyze()
+	 ampEnergy = fourier.getEnergy(20, 400)
+
+	
 	 //create a new visualisation container and add visualisations
 	 vis = new Visualisations();
 	 vis.add(new Spectrum());
@@ -55,6 +66,9 @@ function draw() {
         var vol = amp.getLevel()
         volHistory.push(vol)
 	 }
+
+	
+
 }
 
 function mouseClicked() {
