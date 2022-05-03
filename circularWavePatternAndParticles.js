@@ -32,4 +32,15 @@ function CircularWavePatternAndParticles() {
 		pop();
 
 	};
+	
+	class Particle {
+		constructor() {
+			this.pos = p5.Vector.random2D().mult(250)
+		}
+		show() {
+			noStroke()
+			fill(255)
+			elipse(this.pos.x, this.pos.y), 4
+		}
+	}
 }
